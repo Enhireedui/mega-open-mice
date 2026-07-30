@@ -1,0 +1,25 @@
+# Netlify build configuration — MEGA OPEN MIC.
+#
+# Deploy this as its OWN Netlify site. MEGA TEST DRIVE 5 is still live and
+# taking registrations from its own site; sharing a site would overwrite it.
+#
+# The Next.js runtime (@netlify/plugin-nextjs) is what makes Server Components
+# and Server Actions work here — it maps them onto Netlify Functions. Netlify
+# installs it automatically for Next.js sites; it is declared explicitly so the
+# dependency is visible in the repo.
+#
+# Environment variables are NOT set here — they belong in
+# Site configuration ▸ Environment variables, so the webhook URL never
+# lands in version control:
+#   GOOGLE_SHEETS_WEBHOOK_URL   (secret, server-only — the MEGA OPEN MIC sheet)
+#   NEXT_PUBLIC_SITE_URL        (e.g. https://megaopenmic.netlify.app)
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Matches the `engines` floor in package.json.
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
