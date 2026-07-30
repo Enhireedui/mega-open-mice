@@ -153,19 +153,21 @@
   color: transparent;
 }
 
-/* Top-lit warm metal — the poster's golden hour, applied to type.
-   The gradient stretches over the whole element, so the taller the block the
-   further its last line falls down the ramp: the incentive sentence sets three
-   lines on a desktop but five or six on a phone, where the old #f2c79a foot
-   landed on rgb(244 205 164) — legible, but visibly duller than the first line,
-   and duller again on a Samsung "Vivid" panel that pushes warm hues.
-   The ramp now ends on cream rather than tan, so the sixth line still reads
-   near-white; the golden hour is carried by the figure, not by the sentence. */
+/* The incentive sentence: one solid near-white, no gradient.
+   It used to be top-lit warm metal like the figure below, and it came back from
+   a Galaxy as "бүдэг" twice — the second time after the ramp had already been
+   brightened from a #f2c79a foot to a cream one, i.e. after every line measured
+   above 17.7:1. Contrast was not what was wrong.
+   Text painted by clipping a gradient to the glyphs (`background-clip: text`
+   plus `color: transparent`) is composited through a glyph mask, and Chromium
+   drops LCD subpixel antialiasing on that path: the same letters come out
+   thinner and softer than when they are painted as a plain colour. On a phone
+   that softness reads as faint, and a five-or-six-line sentence is the worst
+   case for it. So the sentence is now a flat colour on the normal text path,
+   and the golden hour is carried by the figure alone — one line, where the
+   effect is worth its cost. */
 @utility text-dusk {
-  background-image: linear-gradient(180deg, #ffffff 0%, #fff9f1 50%, #ffefdc 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #fffaf3;
 }
 
 /* The figure that does the persuading: the same light, concentrated. */
@@ -181,14 +183,13 @@
   color: transparent;
 }
 
-/* The three utilities above paint their colour with a gradient clipped to the
-   glyphs, which means `color: transparent` is the real colour anywhere the clip
-   does not work — the sentence would not look faint, it would be gone. Every
+/* text-chrome and text-ember-metal paint their colour with a gradient clipped to
+   the glyphs, which means `color: transparent` is the real colour anywhere the
+   clip does not work — the text would not look faint, it would be gone. Every
    engine we ship to supports it; this is for the proxy browsers and stripped
    webviews we do not test on. */
 @supports not ((background-clip: text) or (-webkit-background-clip: text)) {
-  .text-chrome,
-  .text-dusk {
+  .text-chrome {
     background-image: none;
     color: #fff6ea;
   }
