@@ -157,21 +157,21 @@ export function SuccessModal({ open, onClose }: SuccessModalProps) {
               id={titleId}
               className="mx-auto mt-6 max-w-[16rem] text-balance font-display text-[1.25rem] font-semibold leading-[1.35] tracking-[-0.01em] text-chrome"
             >
-              Таны бүртгэл амжилттай баталгаажлаа.
+              Амжилттай бүртгэгдлээ.
             </h2>
 
             {/* When and where — the only thing worth handing over at this point.
+                Two lines, no box, no icons: the date carries, the rest supports.
                 Silent until the schedule is confirmed in lib/config.ts. */}
             {hasEventDetails() ? (
               <div className="mt-7">
-                <div aria-hidden="true" className="hairline-h h-px" />
                 {dateLabel ? (
-                  <p className="mt-6 font-display text-[1.0625rem] font-semibold leading-none tracking-[0.04em] tabular-nums text-white/92">
+                  <p className="font-display text-[1.125rem] font-semibold leading-none tracking-[0.03em] tabular-nums text-white/92">
                     {dateLabel}
                   </p>
                 ) : null}
                 {whereLine ? (
-                  <p className="mt-2.5 text-[0.8125rem] leading-relaxed text-white/55">
+                  <p className="mx-auto mt-3 max-w-[17rem] text-balance text-[0.8125rem] leading-relaxed text-white/55">
                     {whereLine}
                   </p>
                 ) : null}
